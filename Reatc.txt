@@ -1,0 +1,113 @@
+I am a NEWBIE, learning React. AS FAR AS I KNOW....
+
+** React is JS library **
+1) 2 ways to create a react APP.
+=> a) Using CRA (old)  b) Using Vite (latest) 
+
+2) Benefit of React.
+=> a) In Original JS DOM; if say on any 1 of the element change is made like "change in button color" then entire DOM tree is re-rendered or updated.
+
+b) This is very inefficient as if say there is a live-website where at an instance 500 changes are made like "likes / comments / views...etc"
+so for this changes to be made on the live-site browser needs to refresh entire DOM 500 times which may crash the site/browser.
+
+Real Example : Page doesn't reloads every-time even if URL of webpages changes inside a website;
+
+c) Hence react used virtual DOM instead of Normal DOM where only specific component (button here) only changes.
+
+d) It is component based architecture and these components are reusable components (EASY AND FASTER TO BUILD WEBSITES)
+
+e) The .jsx files in React App folder structure are our components files.
+
+f) This jsx files have code structure similar to HTML but the work as JS; USED to write HTML like code in JS in much easier and shorter way.
+eg: 
+-> IN JS we write: let x = document.body.createElement("div");  x.innerHTML="App"
+-> But in JSX we write: <div>App</div> for same thing
+
+g) In react components are "functions" that return JSX
+
+
+
+
+Tip: write "rfce" to create a react app template
+----------------------------------------------------------------------------------------------------------------------------------------------
+Q.1) BUT if i use Virtual DOM then without making changes to REAL DOM how things works the in real-time ?
+
+Q.2) But just curious I want to understand; if i change my Button color using JS then HOW whole DOM is refreshed ? as i am unable to visually 
+     sees this  ?
+
+
+
+ 
+Notes: eps-2: Igniting our react app from scratch 
+Motive : AS directly creating react app using "Vite" or "CRA (creat react app METHOD)" Directly gives you so call "production ready sample app" and we dont know how it happened. So we will be learning step by step each.
+
+i) package.json is configuration for npm : (repository that stores packages(cloud) and manages them (how?).
+-> as we download them from internet to our local manages their versions ..and.... (told by akshay)
+-> if our project has lot of dependencies that it manages them. like names of other dependencies for that each respective module.
+ii) These packages are also called dependencies 
+iii) He describes how to process of making our local app to be production ready is done.
+-> uses packages with common name as "bundlers" which bundles/packages our code files (here html,css,js..) ; cleans them , compresses them; performs some sort of processing ; so that it can be ship to production.
+-> bundlers eg : "webpack", "vite" , "parcel" ,
+iv) To use these packages in our local project we need to use something called "package manager" called  npm/yarn ; for that use "npm init" create package.json file where input some out details like package name,....(dont know much). (this is like a configuration file for npm dont what it exactly means ?  but still continues....)
+v) we will be using "parcel" which is an npm package in our project to 
+bundle our app; we can also use vite / webpack
+webpack (all do same job at the end just algo to implement is different
+vi) There are 2 types of dependencies:
+i) dev dependency
+ii) normal dependency
+we will be using "dev"
+dependency as we are USING it in development
+phase of our project.
+(Reasearch for more details)
+hence: npm install -D parcel // O.P: creates a package-lock.json
+vii) Parcel is BEAST ; gives lot more powers to our basic app.
+viii) He told me that "this lock file" has some EXACT versions of parcel package as in .json file there is average version with "caret" like that and yet to research.
+-> One interesting thing about caret: See if in current package version (if some minor updates come just tommorow); then caret automatically makes available the latest one for our project in development and product environment (I GUESS !just confirm) BUT
+If some major update come then; it wont upgrade as this might let to many changes in existing code which might make behave app improper.
+-> Also there some "integrity" property in lock file which stores some "sha 512 hash" this is imp as it validates whether the version deployed in production environment of parcel package is same as that of which is running in development 
+ix) Also the "node modules" kind of thing is also installed which contains all the code/database of the parcel package ONLY
+x) Each dependencies in node module has its own package.json file and also its dependent on other modules as well this chain of dependencies is called "transitive dependencies"
+11) To avoid Putting node module inside of GitHub repo or some files that we dont we to host it on production we make a file with name ".gitignore" and specify the path 
+12)-> Q) Why dont we put "node_modules" in "git" ?
+=> This package-lock.json maintains extact information about all the "transitive dependencies" of all the packages with their version / integrity etc.
+And also package.json has some useful information like "carent packages" and "dev dependencies" as told above.
+=> These both have sufficient information to "recreate" node-modules on "server itself" 
+
+13) to install a package we use : npm ; 
+and to execute our project file using that package we use :npx commands  (i.e Igniting our app; LIKE here it(parcel) created a local server and hosted our app in it. ( npx parcel index.html );  { always need to run this commands to run our react app }
+14) Using CDN link to import react and ReactDOM is not good and prefereed way as; it waste time in N/W calls also if new react version came we need to change url everytime and also its slow hence using "npm" we import/download these 2 packages in our project as node_modules (normal dependencies)
+= npm install react and npm install react-dom.
+15) Now in next step after installing react and react dom modules locally; Before igniting our APP using parcel; we need to fix few things.
+-> delete CDN links 
+-> Prev without JSX we use const element= "React.createElement="h1,{class:"tag"},"Hello World" ; Here "React" word is comming from the so called "react library from CDN" but here we dont have CDN but have "react and react-dom" modules so write on top of script.js file:
+= import React from "react" 
+= import ReactDOM from "react-dom"
+-> Also our JS browser engine doesnt understand these "import , export keyword" as in JS syntax we dont have that, so to fix it we need add attrubute in script tag inside html file "type = module" what it means i guess that our js files is now completely dependent on "module" thats why????? ( BUT IT MAKE OUR REACT APP RUN )
+
+16) Why parcel is BEAST?
+=> Building a react app requires makes a local server then we need to make a (dev build of index.html._ so we can split npx parcel index.html command like .........(just add here) 
+so in short parcel makes
+-> dev build
+-> creates local server
+-> auto-refreshes called "HMR" for that use ('File watcher algo' to keeps track of real-time changes and tell server to reload )
+-> Caching file for 'faster rebuild' like for 1rst build it takes more time; but for next rebuilds (as per changes we make like eg" changes in   h1 tag content and bla bla....) TAKES LESS time (try it will understand)
+-> Image Optimization
+-> Compression of files
+-> Bundling for production ( Core JOB )
+
+17) There are 2 types of build: i) dev build: requires less optimizations/minifications in comparison to produ.. build : npx parcel index.html
+                               ii) production build: requires slightly more optimizations : npx parcel build index.html
+-> See there are 2 temporary folders created when we ignite or run our react i.e (dist and .parse_cache).  (builds are stored here)
+-> when first time we run; the build (dev/production) created; that files are stored in "dist" folder.
+-> Then if we run same files by making some changes then in that case; parcel used "Parse_cache" for faster building time along with "dist".
+** Just have a loop at dist_folder files to understand how they are compressed...
+
+18) Should we push these 2 important folders (.parse_cache and dist) in our GitHub repo ?
+=> No as these are temporary folders (ANY thing which can be regenerated should be put into our git repo like node_modules we have seen)
+As on "SERVER" when it will run "npx parcel build index.html" then "dist" and "temp" will automatically be regenerated also it will run "npm i"
+then "node_modules" will be also downloaded on the server.
+
+Just put then in .git_ignore
+
+19)
+
