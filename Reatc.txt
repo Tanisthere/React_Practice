@@ -39,7 +39,10 @@ Q.2) But just curious I want to understand; if i change my Button color using JS
 
  
 Notes: eps-2: Igniting our react app from scratch 
+
 Motive : AS directly creating react app using "Vite" or "CRA (creat react app METHOD)" Directly gives you so call "production ready sample app" and we dont know how it happened. So we will be learning step by step each.
+
+Highly recommended to see notes in : https://github.com/Tanisthere/Namaste-React
 
 i) package.json is configuration for npm : (repository that stores packages(cloud) and manages them (how?).
 -> as we download them from internet to our local manages their versions ..and.... (told by akshay)
@@ -109,5 +112,9 @@ then "node_modules" will be also downloaded on the server.
 
 Just put then in .git_ignore
 
-19)
+19) There is also a package called "browserslist" in nodule_modules which tells on which browsers our react app should work; just see package.json file will see "browerslist array" and content tells that its compatible with all browsers with their last 5 versions.
+
+Recommended to visit : browserlist.dev website
+
+
 
